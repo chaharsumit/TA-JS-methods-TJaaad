@@ -13,7 +13,7 @@ let indexOfIs = quote.indexOf('is');
 2. Find the character at the index indexOfIs (Problem 1) in quote.
 */
 
-console.log(indexOfIs);
+quote.charAt(indexOfIs);
 
 /*
 3. Log the message saying `The index of first is in quote is 7`
