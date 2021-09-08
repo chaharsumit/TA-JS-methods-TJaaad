@@ -17,17 +17,32 @@ let persons = [
 
 // Find the average grade
 
+persons.map(x => x.grade).reduce((acc,curr) => acc + curr) / persons.length;
+
 // Find the average grade of male
+
+persons.filter(x => x.sex === 'M').map(x => x.grade).reduce((acc,curr) => acc + curr) / (persons.filter(x=>x.sex==='M').length);
 
 // Find the average grade of female
 
+persons.filter(x => x.sex === 'F').map(x => x.grade).reduce((acc,curr) => acc + curr) / (persons.filter(x=>x.sex==='F').length);
+
 // Find the highest grade
+
+persons.map(x => x.grade).reduce((acc,curr) => acc > curr ? acc : curr);
 
 // Find the highest grade in male
 
+persons.filter(x => x.sex === 'M').map(x => x.grade).reduce((acc,curr) => acc > curr ? acc : curr);
+
 // Find the highest grade in female
 
+persons.filter(x => x.sex === 'F').map(x => x.grade).reduce((acc,curr) => acc > curr ? acc : curr);
+
 // Find the highest grade for people whose name starts with 'J' or 'P'
+
+
+let highestGrade = persons.filter(x => x.name.startsWith('J') || x.name.startsWith('P')).map(x => x.grade).sort((a,b) => a - b).pop();
 
 const fruitBasket = [
   'banana',
@@ -52,6 +67,15 @@ Output:
 {banana: 2, cherry: 3, orange: 3, apple: 2, fig: 1}
 */
 
+let fruitsObj = fruitBasket.reduce((acc,curr) => {
+  if(!acc[curr]){
+    acc[curr] = 1;
+  }else{
+    acc[curr] += 1;
+  }
+  return acc;
+},{});
+
 /* 
 
 Use the fruitBasket array to create an array of array. Each array will contain two values name of fruit and number of times
@@ -62,12 +86,22 @@ Output:
 [['banana', 2], ['cherry', 3], ['orange', 3], ['apple', 2], ['fig', 1]]
 */
 
+let fruitsArrayOfArray  = Object.keys(fruitsObj).reduce((acc, curr) => {
+    acc = acc.concat([[curr, fruitsObj[curr]]]);
+    return acc;
+}, []);
+
 const data = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
   [10, 11, 12],
 ];
+
+data.reduce((acc, curr) => {
+  acc = acc.concat(curr.flat(Infinity));
+  return acc;
+}, []);
 
 // Using reduce flat data array
 
@@ -79,6 +113,11 @@ const dataTwo = [
 ];
 
 // Using reduce flat dataTwo array
+
+dataTwo.reduce((acc, curr) => {
+  acc = acc.concat(curr.flat(Infinity));
+  return acc;
+}, []);
 
 /*
 
@@ -100,6 +139,32 @@ let pipeline = [
   half,
   increment,
 ];
+
+function increment(num){
+  return ++num;
+}
+
+function double(num){
+  return num * 2;
+}
+
+function decrement(num){
+  return --num;
+}
+
+function triple(num){
+  return num * 3;
+}
+
+function half(num){
+  return Math.round(num / 2);
+}
+
+let result = pipeline.reduce((acc,curr) => {
+  acc = curr(acc);
+  return acc;
+},3);
+result; // 19
 
 /*
 Using the pipeline variable that contains the collection of functions, taking the initial value 3 find the output.
@@ -129,4 +194,29 @@ let pipeline2 = [
   triple,
 ];
 
+function increment(num){
+  return ++num;
+}
+
+function double(num){
+  return num * 2;
+}
+
+function decrement(num){
+  return --num;
+}
+
+function triple(num){
+  return num * 3;
+}
+
+function half(num){
+  return Math.round(num / 2);
+}
+
+let result = pipeline.reduce((acc,curr) => {
+  acc = curr(acc);
+  return acc;
+},8);
+result; //219
 // Find the output using pipeline2 the initial value if 8
