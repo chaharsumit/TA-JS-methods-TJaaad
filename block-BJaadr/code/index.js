@@ -1,35 +1,94 @@
 // NOTE: You can only use the (reduce) array method to solve this exercise:
 
-function countAllPeople() {
-  // your code goes here
+function countAllPeople(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc += curr.people.length;
+    return acc;
+  },0);
+  return result;
 }
 
-function peopleByHouses() {
-  // your code goes here
+
+function peopleByHouses(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc[curr.name] = curr.people.length;
+    return acc;
+  },{});
+  return result;
 }
 
-function everyone() {
-  // your code goes here
+function everyone(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc.push(curr.people.reduce((a,b) => {
+      a.push(b.name);
+      return a;
+    },[]));
+    return acc.flat();
+  },[]);
+  return result;
 }
 
-function nameWithS() {
-  // your code goes here
+function nameWithS(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc.push(curr.people.reduce((a,b) => {
+      a.push(b.name);
+      return a;
+    },[]));
+    return acc.flat().filter(x => x.includes('s') || x.includes('S')) ;
+  },[]);
+  return result;
 }
 
-function nameWithA() {
-  // your code goes here
+function nameWithA(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc.push(curr.people.reduce((a,b) => {
+      a.push(b.name);
+      return a;
+    },[]));
+    return acc.flat().filter(x => x.includes('a') || x.includes('A')) ;
+  },[]);
+  return result;
 }
 
-function surnameWithS() {
-  // your code goes here
+function surnameWithS(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc.push(curr.people.reduce((a,b) => {
+      a.push(b.name);
+      return a;
+    },[]));
+    return acc.flat().filter(x => x.split(' ')[1].startsWith('S')) ;
+  },[]);
+  return result;
 }
 
-function surnameWithA() {
-  // your code goes here
+function surnameWithA(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc.push(curr.people.reduce((a,b) => {
+      a.push(b.name);
+      return a;
+    },[]));
+    return acc.flat().filter(x => x.split(' ')[1].startsWith('A')) ;
+  },[]);
+  return result;
 }
 
-function peopleNameOfAllHouses() {
-  // your code goes here
+function peopleNameOfAllHouses(){
+  let result;
+  result = got.houses.reduce((acc,curr) => {
+    acc[curr.name] = (curr.people.reduce((a,b) => {
+      a.push(b.name);
+      return a;
+    },[]));
+    return acc;
+  },{});
+  return result;
 }
 
 // Testing your result after writing your function
