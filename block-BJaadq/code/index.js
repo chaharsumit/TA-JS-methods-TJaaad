@@ -1,35 +1,90 @@
 // NOTE: You can not use reduce methods to solve this exercise
 
-function countAllPeople() {
-  // your code goes here
+function countAllPeople(){
+  let result = 0;
+  for(house of got.houses){
+    result += house.people.length;
+  }
+  return result;
 }
 
 function peopleByHouses() {
   // your code goes here
+  function peopleByHouses(){
+  let peopleInHouse = {};
+  for(house of got.houses){
+    peopleInHouse[house.name] = house.people.length;
+  }
+  return peopleInHouse;
+}
 }
 
-function everyone() {
-  // your code goes here
+function everyone(){
+  let result = [];
+ for(house of got.houses){
+   for(everyone of house.people){
+     result.push(everyone.name);
+   }
+ }
+ return result;
 }
 
 function nameWithS() {
   // your code goes here
+  let allNames = [];
+  for(house of got.houses){
+     for(everyone of house.people){
+       allNames.push(everyone.name);
+     }
+  }
+  return allNames.filter(x => x.includes('s') || x.includes('S'));
 }
 
 function nameWithA() {
   // your code goes here
+  let allNames = [];
+  for(house of got.houses){
+     for(everyone of house.people){
+       allNames.push(everyone.name);
+     }
+  }
+  return allNames.filter(x => x.includes('a') || x.includes('A'));
 }
 
-function surnameWithS() {
-  // your code goes here
+function surnameWithS(){
+  let allNames = [];
+  for(house of got.houses){
+     for(everyone of house.people){
+       allNames.push(everyone.name);
+     }
+  }
+  return allNames.filter(x => x.split(' ')[1].startsWith('S'));
 }
 
-function surnameWithA() {
-  // your code goes here
+function surnameWithA(){
+  let allNames = [];
+  for(house of got.houses){
+     for(everyone of house.people){
+       allNames.push(everyone.name);
+     }
+  }
+  return allNames.filter(x => x.split(' ')[1].startsWith('A'));
 }
 
 function peopleNameOfAllHouses() {
   // your code goes here
+  function peopleByAllHouses(){
+  let peopleInAllHouses = {};
+  let tempArr = [];
+  for(house of got.houses){
+    tempArr = [];
+    for(everyone of house.people){
+      tempArr.push(everyone.name);
+    }
+    peopleInAllHouses[house.name] = tempArr;
+  }
+  return peopleInAllHouses;
+}
 }
 
 // Testing your result after writing your function
